@@ -12,24 +12,7 @@ void draw(void) {
 }
  
 void setup(void) {
-  u8g.setContrast(0); // Config the contrast to the best effect
   u8g.setRot180();// rotate screen, if required
-  // set SPI backup if required
-  //u8g.setHardwareBackup(u8g_backup_avr_spi);
- 
-  // assign default color value
-  if ( u8g.getMode() == U8G_MODE_R3G3B2 ) {
-    u8g.setColorIndex(255);     // white
-  }
-  else if ( u8g.getMode() == U8G_MODE_GRAY2BIT ) {
-    u8g.setColorIndex(3);         // max intensity
-  }
-  else if ( u8g.getMode() == U8G_MODE_BW ) {
-    u8g.setColorIndex(1);         // pixel on
-  }
-  else if ( u8g.getMode() == U8G_MODE_HICOLOR ) {
-    u8g.setHiColorByRGB(255,255,255);
-  }
 }
  
 void loop(void) {

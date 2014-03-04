@@ -8,7 +8,7 @@ void draw(void) {
   // graphic commands to redraw the complete screen should be placed here 
   u8g.setFont(u8g_font_unifont);
   //u8g.setFont(u8g_font_osb21);
-  u8g.drawStr( i++, i++, "www.DFRobot.com");
+  u8g.drawStr( 20, 35, "hello world");
 }
  
 void setup(void) {

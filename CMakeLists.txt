@@ -31,4 +31,5 @@ SET(CMAKE_CXX_FLAGS ${CXXFLAGS})
 add_subdirectory(libarduino)
 add_subdirectory(libu8g)
 add_subdirectory(main)
+add_subdirectory(bird)
 

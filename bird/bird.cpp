@@ -16,6 +16,21 @@ float wrapPi(float theta)
 	return theta;
 }
 
+void trimBitmap(bool right, uint8_t p, const uint8_t *input, uint8_t w, uint8_t h, uint8_t *output)
+{
+	for (uint8_t i = 0; i < p; ++i)
+	{
+		for (uint8_t j = 0; j < h; ++j)
+		{
+			if (right)
+				output[ j * p + i ] = input[j * w + i];
+			else
+				output[ j * p + i ] = input[j * w + (w - i - 1)];
+
+		}
+	}
+}
+
 void setup(void) 
 {
 	u8g.setRot180();// rotate screen, if required

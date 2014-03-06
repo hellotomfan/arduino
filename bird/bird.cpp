@@ -4,6 +4,18 @@
 
 U8GLIB_NHD_C12864 u8g(13, 11, 10, 9, 8);    // SPI Com: SCK = 13, MOSI = 11, CS = 10, CD = 9, RST = 8
 
+const float kPi = 3.14159265f;
+const float k2Pi = kPi * 2.0f;
+const float kPiOver2 = kPi / 2.0f;
+const float k1OverPi = 1.0f / kPi;
+const float k1Over2Pi = 1.0f / k2Pi;
+
+float wrapPi(float theta)
+{
+	theta -= floor(theta * k1Over2Pi) * k2Pi;
+	return theta;
+}
+
 void setup(void) 
 {
 	u8g.setRot180();// rotate screen, if required
@@ -11,15 +23,26 @@ void setup(void)
 
 void loop(void) 
 {
+	const unsigned char *bitmap = NULL;
 	for (uint8_t x = 0; x < 128; ++x)
 	{
-		uint8_t y = sin(x/12)*10+1;
+		const float a = 5.f;
+		const uint8_t b = 8;
+		const uint8_t c = 8;
+		uint8_t y = sin(x/a) * b + c;
+
+		float theta = wrapPi(x/a);
+		if (theta >= kPiOver2 && theta < 3 * kPiOver2)
+			bitmap = BirdAnmiDown;
+		else
+			bitmap = BirdAnmiUp;
+
 		u8g.firstPage(); 
 		do {
-			u8g.drawBitmapP(x, y, 6, 48, BirdAnmiUp);
+			u8g.drawBitmapP(x, y, 6, 48, bitmap);
 		}
 		while( u8g.nextPage() );
-		delay(200);
+		delay(100);
 	}
 	delay(500);
 }

@@ -33,9 +33,9 @@ void loop(void)
 
 		float theta = wrapPi(x/a);
 		if (theta >= kPiOver2 && theta < 3 * kPiOver2)
-			bitmap = BirdAnmiDown;
+			bitmap = BirdDown;
 		else
-			bitmap = BirdAnmiUp;
+			bitmap = BirdUp;
 
 		u8g.firstPage(); 
 		do {

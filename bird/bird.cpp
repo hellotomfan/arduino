@@ -26,8 +26,8 @@ void loop(void)
 	const unsigned char *bitmap = NULL;
 	for (uint8_t x = 0; x < 128; ++x)
 	{
-		const float a = 5.f;
-		const uint8_t b = 8;
+		const float a = 2.5f;
+		const uint8_t b = 4;
 		const uint8_t c = 8;
 		uint8_t y = sin(x/a) * b + c;
 

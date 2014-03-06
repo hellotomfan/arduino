@@ -10,39 +10,25 @@ const float kPiOver2 = kPi / 2.0f;
 const float k1OverPi = 1.0f / kPi;
 const float k1Over2Pi = 1.0f / k2Pi;
 
+unsigned char tmp [ 48 * 48 ] PROGMEM = {0x0};
+
 float wrapPi(float theta)
 {
 	theta -= floor(theta * k1Over2Pi) * k2Pi;
 	return theta;
 }
 
-void trimBitmap(bool right, uint8_t p, const uint8_t *input, uint8_t w, uint8_t h, uint8_t *output)
-{
-	for (uint8_t i = 0; i < p; ++i)
-	{
-		for (uint8_t j = 0; j < h; ++j)
-		{
-			if (right)
-				output[ j * p + i ] = input[j * w + i];
-			else
-				output[ j * p + i ] = input[j * w + (w - i - 1)];
-
-		}
-	}
-}
-
 void setup(void) 
 {
 	u8g.setRot180();// rotate screen, if required
 }
-
 void loop(void) 
 {
 	const unsigned char *bitmap = NULL;
-	for (uint8_t x = 0; x < 128; ++x)
+	for (int8_t x = -48; x < 128 - 8; x += 5)
 	{
-		const float a = 2.5f;
-		const uint8_t b = 4;
+		const float a = 1.5f;
+		const uint8_t b = 2;
 		const uint8_t c = 8;
 		uint8_t y = sin(x/a) * b + c;
 
@@ -57,7 +43,6 @@ void loop(void)
 			u8g.drawBitmapP(x, y, 6, 48, bitmap);
 		}
 		while( u8g.nextPage() );
-		delay(100);
+		delay(500);
 	}
-	delay(500);
 }

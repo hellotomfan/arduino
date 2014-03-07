@@ -32,4 +32,5 @@ add_subdirectory(libarduino)
 add_subdirectory(libu8g)
 add_subdirectory(main)
 add_subdirectory(bird)
+add_subdirectory(shield)
 
